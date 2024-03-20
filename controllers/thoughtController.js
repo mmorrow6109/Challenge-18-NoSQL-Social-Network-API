@@ -27,11 +27,14 @@ module.exports = {
           { new: true }
         );
       })
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({ message: "No User found with this ID!" })
-          : res.json(thought)
-      )
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({ message: "No User found with this ID!" });
+        }
+        // Populate thoughts and return the user
+        return User.populate(user, { path: 'thoughts' });
+      })
+      .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
 
@@ -53,7 +56,7 @@ module.exports = {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought find with this ID!" })
+          ? res.status(404).json({ message: "No thought found with this ID!" })
           : User.findOneAndUpdate(
               { thoughts: req.params.thoughtId },
               { $pull: { thoughts: req.params.thoughtId } },
@@ -76,7 +79,7 @@ module.exports = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought friend with ID!" })
+          ? res.status(404).json({ message: "No thought found with ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));

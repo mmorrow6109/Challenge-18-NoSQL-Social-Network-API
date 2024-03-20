@@ -12,7 +12,7 @@ module.exports = {
       .select("-__v")
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No Thought find with this ID!" })
+          ? res.status(404).json({ message: "No Thought found with this ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -29,7 +29,7 @@ module.exports = {
       })
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No User find with this ID!" })
+          ? res.status(404).json({ message: "No User found with this ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -43,7 +43,7 @@ module.exports = {
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: "No thought find with this ID!" })
+          ? res.status(404).json({ message: "No thought found with this ID!" })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -76,7 +76,7 @@ module.exports = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought frind with ID!" })
+          ? res.status(404).json({ message: "No thought friend with ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -90,7 +90,7 @@ module.exports = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought find with this ID!" })
+          ? res.status(404).json({ message: "No thought found with this ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
